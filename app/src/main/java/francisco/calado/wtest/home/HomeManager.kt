@@ -3,22 +3,26 @@ package francisco.calado.wtest.home
 import android.os.Bundle
 import francisco.calado.wtest.home.model.HomeNews
 import francisco.calado.wtest.home.view.NewsDetailFragment
+import francisco.calado.wtest.home.view.SendMessageFragment
 import io.reactivex.Single
 
-class HomeManager(private val newsRepository: NewsRepository, private val homeNavigator: HomeNavigator) {
+class HomeManager(
+    private val newsRepository: NewsRepository,
+    private val homeNavigator: FragmentNavigator
+) {
 
     private var page = 1
 
-    fun getFreshNews() : Single<HomeNews> {
+    fun getFreshNews(): Single<HomeNews> {
         return newsRepository.getFreshNews()
     }
 
-    fun getMoreNews() : Single<HomeNews> {
+    fun getMoreNews(): Single<HomeNews> {
         page++
         return newsRepository.getMoreNews(page)
     }
 
-    fun navigateToArticle(id: Int){
+    fun navigateToArticle(id: Int) {
         val frag = NewsDetailFragment.newInstance()
         val args = Bundle()
         args.putInt(NEWS_DETAIL_ID, id)
@@ -26,7 +30,11 @@ class HomeManager(private val newsRepository: NewsRepository, private val homeNa
         homeNavigator.navigateToFragment(frag)
     }
 
-    companion object{
+    fun navigateToSendMessage() {
+        homeNavigator.navigateToFragment(SendMessageFragment.newInstance())
+    }
+
+    companion object {
         const val NEWS_DETAIL_ID = "news_detail_id"
     }
 }

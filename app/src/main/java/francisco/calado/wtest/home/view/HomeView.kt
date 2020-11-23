@@ -11,5 +11,7 @@ interface HomeView {
 
     fun removeLoadMore()
 
-    fun itemClicked() : PublishSubject<Int>
+    fun itemClicked(): PublishSubject<Int>
+
+    fun fabClicked(): PublishSubject<Boolean>
 }

@@ -15,6 +15,7 @@ import francisco.calado.wtest.home.model.LoadingItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment(), HomeView {
@@ -24,11 +25,13 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     private lateinit var presenter: HomePresenter
-    private val clickSubject = PublishSubject.create<Int>()
+    private val itemClickSubject = PublishSubject.create<Int>()
+    private val fabClickSubject = PublishSubject.create<Boolean>()
     private val homeAdapter: HomeListAdapter by lazy {
         HomeListAdapter(
             ArrayList(),
-            LoadingItem(), clickSubject)
+            LoadingItem(), itemClickSubject
+        )
     }
     private lateinit var scrollListener: RecyclerView.OnScrollListener
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -62,6 +65,8 @@ class HomeFragment : Fragment(), HomeView {
         newsList.layoutManager = linearLayoutManager
         newsList.adapter = homeAdapter
         setRecyclerViewScrollListener()
+
+        fab.setOnClickListener { fabClickSubject.onNext(true) }
     }
 
     override fun onDestroy() {
@@ -77,7 +82,8 @@ class HomeFragment : Fragment(), HomeView {
     override fun onResume() {
         super.onResume()
         presenter.populateHome()
-        presenter.handleClick()
+        presenter.handleItemClick()
+        presenter.handleFabClick()
     }
 
     override fun addNews(homeNews: HomeNews) {
@@ -95,11 +101,15 @@ class HomeFragment : Fragment(), HomeView {
     }
 
     override fun itemClicked(): PublishSubject<Int> {
-        return clickSubject
+        return itemClickSubject
+    }
+
+    override fun fabClicked(): PublishSubject<Boolean> {
+        return fabClickSubject
     }
 
     private fun setRecyclerViewScrollListener() {
-        var loading = true;
+        var loading = true
         scrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 val visibleItemCount = linearLayoutManager.childCount

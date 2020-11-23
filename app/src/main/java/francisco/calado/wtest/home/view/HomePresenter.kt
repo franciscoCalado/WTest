@@ -34,9 +34,16 @@ class HomePresenter(
         )
     }
 
-    fun handleClick() {
+    fun handleItemClick() {
         subscriptions.add(view.itemClicked()
             .doOnNext { id -> homeManager.navigateToArticle(id) }
+            .subscribe({}, { it.printStackTrace() })
+        )
+    }
+
+    fun handleFabClick() {
+        subscriptions.add(view.fabClicked()
+            .doOnNext { homeManager.navigateToSendMessage() }
             .subscribe({}, { it.printStackTrace() })
         )
     }
