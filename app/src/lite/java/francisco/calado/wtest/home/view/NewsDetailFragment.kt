@@ -11,7 +11,7 @@ import francisco.calado.wtest.home.HomeManager
 import francisco.calado.wtest.home.NewsDetailManager
 import francisco.calado.wtest.home.model.NewsItem
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_news_detail.*
+import kotlinx.android.synthetic.lite.fragment_news_detail.*
 
 class NewsDetailFragment : Fragment(), NewsDetailView {
     private lateinit var presenter: NewsDetailPresenter

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WTest</string>
+    <string name="app_name">WTestLite</string>
     <string name="email_hint">example@example.com</string>
     <string name="message_hint">Your message here</string>
     <string name="number_hint">00000…</string>
@@ -12,5 +12,4 @@
     <string name="code_error">The letter code field cannot be empty and must contain betweem 3 and 7 literal characters and hyphens</string>
     <string name="date_error">The date can\'t be a Monday and must be in the past</string>
     <string name="rating_error">Please choose a rating</string>
-    <string name="comments_title">Comments</string>
 </resources>

@@ -8,7 +8,7 @@ import francisco.calado.wtest.home.service.ResponseItem
 import io.reactivex.Single
 import java.text.SimpleDateFormat
 
-class NewsRepository(private val newsService: NewsService) {
+class HomeRepository(private val newsService: NewsService) {
     private val limit = 10
     private var cache = HomeNews(ArrayList())
 
@@ -55,6 +55,7 @@ class NewsRepository(private val newsService: NewsService) {
             responseItem.body
         )
     }
+
     private fun formatDate(toFormat: String): String {
         val inPattern = "yyyy-MM-dd"
         val outPattern = "dd MMMM, yyyy"

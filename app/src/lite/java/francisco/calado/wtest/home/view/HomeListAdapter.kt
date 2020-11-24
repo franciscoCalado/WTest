@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import francisco.calado.wtest.R
-import francisco.calado.wtest.home.model.LoadingItem
+import francisco.calado.wtest.home.model.LoadingHomeItem
 import francisco.calado.wtest.home.model.NewsItem
 import francisco.calado.wtest.home.model.NewsListItem
 import io.reactivex.subjects.PublishSubject
 
 class HomeListAdapter(
     private val dataList: ArrayList<NewsListItem>,
-    private val loadingListItem: LoadingItem,
+    private val loadingListItem: LoadingHomeItem,
     private val clickSubject: PublishSubject<Int>
 ) :
     RecyclerView.Adapter<HomeItem>() {

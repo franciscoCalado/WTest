@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import francisco.calado.wtest.R
 import francisco.calado.wtest.home.HomeManager
 import francisco.calado.wtest.home.model.HomeNews
-import francisco.calado.wtest.home.model.LoadingItem
+import francisco.calado.wtest.home.model.LoadingHomeItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -30,7 +30,7 @@ class HomeFragment : Fragment(), HomeView {
     private val homeAdapter: HomeListAdapter by lazy {
         HomeListAdapter(
             ArrayList(),
-            LoadingItem(), itemClickSubject
+            LoadingHomeItem(), itemClickSubject
         )
     }
     private lateinit var scrollListener: RecyclerView.OnScrollListener
@@ -88,7 +88,6 @@ class HomeFragment : Fragment(), HomeView {
 
     override fun addNews(homeNews: HomeNews) {
         homeAdapter.addNews(homeNews.newsList)
-        newsList.addOnScrollListener(scrollListener)
     }
 
     override fun hideLoading() {

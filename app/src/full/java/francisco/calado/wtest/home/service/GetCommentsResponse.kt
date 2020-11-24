@@ -2,14 +2,11 @@ package francisco.calado.wtest.home.service
 
 import com.squareup.moshi.Json
 
-data class GetNewsResponse(val items: List<ResponseItem>)
-
-data class ResponseItem(
+data class GetCommentsResponse(
     val id: Int,
-    val title: String,
+    val articleId: Int,
     @field:Json(name = "published-at") val published: String,
-    val hero: String,
-    val author: String,
-    val summary: String,
+    val name: String,
+    val avatar: String,
     val body: String
 )

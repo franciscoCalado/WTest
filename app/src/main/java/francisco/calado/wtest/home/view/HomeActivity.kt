@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import francisco.calado.wtest.R
 import francisco.calado.wtest.WTestApplication
 import francisco.calado.wtest.home.FragmentNavigator
-import francisco.calado.wtest.home.NewsRepository
+import francisco.calado.wtest.home.HomeRepository
 import francisco.calado.wtest.home.service.NewsService
 
 class HomeActivity : AppCompatActivity() {
@@ -13,17 +13,17 @@ class HomeActivity : AppCompatActivity() {
     private val homeNavigator: FragmentNavigator by lazy {
         FragmentNavigator(supportFragmentManager, R.id.fragment_container)
     }
-    private lateinit var newsRepository: NewsRepository
+    private lateinit var homeRepository: HomeRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        newsRepository =
-            NewsRepository(NewsService((application as WTestApplication).getNewsRetrofit()))
+        homeRepository =
+            HomeRepository(NewsService((application as WTestApplication).getNewsRetrofit()))
         homeNavigator.navigateToInitialFragment(HomeFragment.newInstance())
     }
 
     fun getNavigator() = homeNavigator
 
-    fun getNewsRepository() = newsRepository
+    fun getNewsRepository() = homeRepository
 }

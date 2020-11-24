@@ -7,23 +7,24 @@ import francisco.calado.wtest.home.view.SendMessageFragment
 import io.reactivex.Single
 
 class HomeManager(
-    private val newsRepository: NewsRepository,
+    private val homeRepository: HomeRepository,
     private val homeNavigator: FragmentNavigator
 ) {
 
     private var page = 1
 
     fun getFreshNews(): Single<HomeNews> {
-        return newsRepository.getFreshNews()
+        return homeRepository.getFreshNews()
     }
 
     fun getMoreNews(): Single<HomeNews> {
         page++
-        return newsRepository.getMoreNews(page)
+        return homeRepository.getMoreNews(page)
     }
 
     fun navigateToArticle(id: Int) {
-        val frag = NewsDetailFragment.newInstance()
+        val frag =
+            NewsDetailFragment.newInstance()
         val args = Bundle()
         args.putInt(NEWS_DETAIL_ID, id)
         frag.arguments = args
