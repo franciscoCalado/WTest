@@ -6,9 +6,9 @@ import android.os.Environment
 
 class DownloadHelper(private val downloadManager: DownloadManager) {
 
-    public fun downloadFile(url: String) {
+    fun downloadFile(url: String) {
         val uri: Uri =
-            Uri.parse("https://raw.githubusercontent.com/centraldedados/codigos_postais/master/data/codigos_postais.csv")
+            Uri.parse(url)
         val request = DownloadManager.Request(uri)
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN)
         request.setDestinationInExternalPublicDir(
