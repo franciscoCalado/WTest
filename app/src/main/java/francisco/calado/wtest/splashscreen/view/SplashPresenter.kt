@@ -1,19 +1,19 @@
 package francisco.calado.wtest.splashscreen.view
 
-import francisco.calado.wtest.download.DownloadHelper
+import francisco.calado.wtest.splashscreen.SplashManager
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class SplashPresenter(
     private val view: SplashView,
-    private val downloadHelper: DownloadHelper,
+    private val splashManager: SplashManager,
     private val subscriptions: CompositeDisposable
 ) {
 
-    fun handleStartUp() {
+    fun handleStartDownload() {
         subscriptions.add(
-            Completable.fromAction { downloadHelper.downloadFile("https://raw.githubusercontent.com/centraldedados/codigos_postais/master/data/codigos_postais.csv") }
+            Completable.fromAction { splashManager.downloadFile("https://raw.githubusercontent.com/centraldedados/codigos_postais/master/data/codigos_postais.csv") }
                 .subscribeOn(Schedulers.io())
                 .subscribe({}, { it.printStackTrace() })
         )
@@ -21,13 +21,9 @@ class SplashPresenter(
 
     fun handleDownloadEnd() {
         subscriptions.add(view.downloadEnded()
-            .doOnNext { mapFileToRoom() }
+            .doOnNext { view.setUpEnded() }
             .subscribe({}, { it.printStackTrace() })
         )
-    }
-
-    private fun mapFileToRoom() {
-        view.setUpEnded()
     }
 
     fun clear() {

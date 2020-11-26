@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WTest</string>
+    <string name="app_name">WTestLite</string>
     <string name="email_hint">example@example.com</string>
     <string name="message_hint">Your message here</string>
     <string name="number_hint">00000…</string>
