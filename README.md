@@ -4,6 +4,7 @@ This app consumes a REST API to show a list of items. Clicking said items will n
 
 The app uses:
 - MVP architecture;
+- RxJava2;
 - Retrofit to handle network requests;
 - Glide to handle network image loading;
 - Room for database;
